@@ -74,6 +74,11 @@
             },
             changeType: function(type) {
                 this.type = type;
+            },
+            changeTask: function (){
+                if (this.leftCount >= 3) {
+                    this.todo_new.status = 1;
+                    console.log("it works.")
             }
         },
         watch: {
@@ -84,5 +89,6 @@
                 deep: true
             }
         }
-    });
+    }
+})
 })(window);
