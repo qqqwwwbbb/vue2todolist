@@ -30,4 +30,59 @@
             });
         }
     };
-})
+
+    exports.app = new Vue({
+        el: '#app',
+        data: {
+            type: 'all',
+            list: JSON.parse(localStorage.getItem('list')) || [],
+            todo_new: ''
+        },
+        computed: {
+            leftCount: function() {
+                let count = 0;
+                for (let i = 0; i < this.list.length; i++) {
+                    if (this.list[i].status == 0) {
+                        count += 1;
+                    }
+                }
+                return count;
+            },
+            filterList: function () {
+                return filters[this.type](this.list);
+            }
+        },
+        methods: {
+            addTodo: function() {
+                let data = {
+                    title: this.todo_new,
+                    status: 0,
+                    time: util.time.getUnix('s')
+                };
+
+                this.list.push(data);
+                this.todo_new = '';
+            },
+            toggleTodo: function(index) {
+                this.filterList[index].status = (this.filterList[index].status) ? 0: 1;
+            },
+            removeTodo: function(item) {
+                this.list.$remove(item);
+            },
+            clearCompleted: function() {
+                this.list = filters.active(this.list);
+            },
+            changeType: function(type) {
+                this.type = type;
+            }
+        },
+        watch: {
+            list: {
+                handler: function(list) {
+                    localStorage.setItem('list', JSON.stringify(list));
+                },
+                deep: true
+            }
+        }
+    });
+})(window);
