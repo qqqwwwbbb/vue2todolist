@@ -45,6 +45,10 @@
                     if (this.list[i].status == 0) {
                         count += 1;
                     }
+                    if (count >= 3) {
+                        console.log("it works.")
+                        this.list[i].status = 1;
+                    }
                 }
                 return count;
             },
@@ -74,12 +78,8 @@
             },
             changeType: function(type) {
                 this.type = type;
-            },
-            changeTask: function (){
-                if (this.leftCount >= 3) {
-                    this.todo_new.status = 1;
-                    console.log("it works.")
-            }
+
+
         },
         watch: {
             list: {
