@@ -9,6 +9,29 @@
 <div id="app" v-cloak>
     <header>Заметки ПнСК</header>
     <input type="text" class="fm_new" placeholder="Добавить заметку..." v-model="todo_new" v-on:keyup.enter="addTodo()">
+    <section class="ctrl">
+        <span class="tip">Сейчас: {{ leftCount }} </span>
+        <span class="type" v-bind:class="{on: type == 'all'}" v-on:click="changeType('all')">Все</span>
+        <span class="type" v-bind:class="{on: type == 'active'}" v-on:click="changeType('active')">Активные</span>
+        <span class="type" v-bind:class="{on: type == 'completed'}" v-on:click="changeType('completed')">Завершенные</span>
+        <span class="clear_all" v-on:click="clearCompleted()">Очистить заметки (выбранные)</span>
+    </section>
+    <section class="main">
+        <div class="item" v-for="item in filterList" v-bind:class="{finish: item.status == 1}">
+            <span v-on:click="toggleTodo($index)"></span>
+            <p>
+                <i v-time="item.time"></i>
+                {{ item.title }}
+            </p>
+            <em v-on:click="removeTodo(item)"></em>
+        </div>
+    </section>
+
+</div>
+
+<script type="text/javascript" src="vue.min.js"></script>
+<script type="text/javascript" src="util.js"></script>
+<script type="text/javascript" src="style.js"></script>
 </div>
 </body>
 </html>
