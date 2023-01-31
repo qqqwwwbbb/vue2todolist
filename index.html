@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <title>todolist practice PNSK</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <header>Заметки ПнСК</header>
+    <input type="text" class="fm_new" placeholder="Добавить заметку..." v-model="todo_new" v-on:keyup.enter="addTodo()">
+</div>
+</body>
+</html>
