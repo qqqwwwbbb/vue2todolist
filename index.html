@@ -26,7 +26,7 @@
         </div>
     </form>
     <section class="ctrl">
-        <span class="tip">Сейчас: {{ leftCount }} </span>
+        <span class="tip">Активных: {{ leftCount }}, Завершенных: {{ counter }} </span>
         <span class="type" v-bind:class="{on: type == 'all'}" v-on:click="changeType('all')">Все</span>
         <span class="type" v-bind:class="{on: type == 'active'}" v-on:click="changeType('active')">Активные</span>
         <span class="type" v-bind:class="{on: type == 'completed'}" v-on:click="changeType('completed')">Завершенные</span>

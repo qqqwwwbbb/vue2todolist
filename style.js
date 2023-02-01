@@ -27,7 +27,17 @@
         completed: function (list) {
             return list.filter(function (todo) {
                 return todo.status;
-            });
+            })
+        },
+        outcast: function (list) {
+            let sum = count + counterC;
+            for (let i = 0; i < this.list.length; i++) {
+                if (counterC > (sum/2)) {
+                    console.log("it works.")
+                    this.list[i].status = 2;
+                    counterC -= 1;
+                }
+            }
         }
     };
 
@@ -57,6 +67,15 @@
             },
             filterList: function () {
                 return filters[this.type](this.list);
+            },
+            counter: function () {
+                let counterC = 0;
+                for (let i = 0; i < this.list.length; i++) {
+                    if (this.list[i].status == 1) {
+                        counterC += 1;
+                    }
+                }
+                return counterC;
             }
         },
         methods: {
