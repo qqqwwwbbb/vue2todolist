@@ -50,6 +50,7 @@
                     if (count >= 3) {
                         console.log("it works.")
                         this.list[i].status = 1;
+                        count -= 1;
                     }
                 }
                 return count;

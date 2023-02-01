@@ -30,6 +30,7 @@
         <span class="type" v-bind:class="{on: type == 'all'}" v-on:click="changeType('all')">Все</span>
         <span class="type" v-bind:class="{on: type == 'active'}" v-on:click="changeType('active')">Активные</span>
         <span class="type" v-bind:class="{on: type == 'completed'}" v-on:click="changeType('completed')">Завершенные</span>
+        <span class="type" v-bind:class="{on: type == 'outcast'}" v-on:click="changeType('outcast')">Изгои</span>
         <span class="clear_all" v-on:click="clearCompleted()">Очистить заметки (выбранные)</span>
     </section>
     <section class="main">
