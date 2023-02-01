@@ -8,7 +8,23 @@
 <body>
 <div id="app" v-cloak>
     <header>Заметки ПнСК</header>
-    <input type="text" class="fm_new" placeholder="Добавить заметку..." v-model="todo_new" v-on:keyup.enter="addTodo()">
+    <form id="formed" @submit="checkForm" method="post">
+        <div class="errors">
+        <p v-if="errors.length">
+            <b>Внимание! </b>
+        <ul>
+            <li v-for="error in errors">{{ error }}</li>
+        </ul>
+        </div>
+        </p>
+            <input type="text" class="fm_new" placeholder="Добавить заметку" v-model="todo_new" v-on:keyup.enter="addTodo()">
+            <input type="text" class="fm_new" placeholder="Добавить описание" v-model="description" v-on:keyup.enter="addTodo()">
+        <div class="button">
+        <p>
+            <input type="submit" v-on:click="checkForm" value="Submit">
+        </p>
+        </div>
+    </form>
     <section class="ctrl">
         <span class="tip">Сейчас: {{ leftCount }} </span>
         <span class="type" v-bind:class="{on: type == 'all'}" v-on:click="changeType('all')">Все</span>
@@ -22,6 +38,7 @@
             <p>
                 <i v-time="item.time"></i>
                 {{ item.title }}
+                {{ item.description }}
             </p>
             <em v-on:click="removeTodo(item)"></em>
         </div>

@@ -140,3 +140,10 @@ input{
     padding: 0 10px;
     margin: 20px auto 0;
 }
+.button {
+    margin-top: 20px;
+}
+.errors > ul > li, p {
+    text-align: center;
+    margin-left: 920px;
+}

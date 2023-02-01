@@ -36,7 +36,9 @@
         data: {
             type: 'all',
             list: JSON.parse(localStorage.getItem('list')) || [],
-            todo_new: ''
+            errors:[],
+            todo_new: null,
+            description: null
         },
         computed: {
             leftCount: function() {
@@ -60,12 +62,24 @@
             addTodo: function() {
                 let data = {
                     title: this.todo_new,
+                    description: this.description,
                     status: 0,
                     time: util.time.getUnix('s')
                 };
 
                 this.list.push(data);
                 this.todo_new = '';
+                this.description = '';
+            },
+            submit(){
+                this.addTodo();
+            },
+            checkForm:function(e) {
+                if(this.todo_new && this.description) return this.addTodo();
+                this.errors = [];
+                if(!this.todo_new) this.errors.push("Введите название!");
+                if(!this.description) this.errors.push("Введите описание!");
+                e.preventDefault();
             },
             toggleTodo: function(index) {
                 this.filterList[index].status = (this.filterList[index].status) ? 0: 1;
